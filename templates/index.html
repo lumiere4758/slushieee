@@ -1,96 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>Slushieee</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+
+            background: url("static/image.png") center / cover no-repeat;
+
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .card {
+            width: 500px;
+            aspect-ratio: 3 / 4;
+            /* adjust depending on image shape */
+            border-radius: 32px;
+            overflow: hidden;
+            background: url("static/card.jpeg") center / cover no-repeat;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 28px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: black;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: black;
+            opacity: 0.8;
+        }
+
+        .open-btn {
+            display: inline-block;
+            margin-top: 28px;
+            width: 180px;
+            height: 72px;
+            background: url("static/button.jpeg") center / cover no-repeat;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #c25a7a;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #e0e0e0;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 4px 16px rgba(194, 90, 122, 0.18);
         }
-        .card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 48px 64px;
-            text-align: center;
-            max-width: 480px;
-            width: 90%;
-        }
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #e94560, #0f3460);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-        p {
-            color: #a0a0b0;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-        .routes {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .route {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
-        }
-        .route:hover { background: rgba(255,255,255,0.12); }
-        .method {
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: #e94560;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-        code {
-            font-family: monospace;
-            color: #7ec8e3;
-            font-size: 0.95rem;
+
+        .open-btn:hover {
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 0 8px 24px rgba(194, 90, 122, 0.28);
         }
     </style>
+
 </head>
+
 <body>
+
     <div class="card">
-        <h1>🚀 Flask App</h1>
-        <p>Your Flask application is up and running. Here are the available routes:</p>
-        <div class="routes">
-            <div class="route">
-                <span class="method">GET</span>
-                <code>/</code>
-                <span>Home page</span>
-            </div>
-            <div class="route">
-                <span class="method">GET</span>
-                <code>/api/hello</code>
-                <span>JSON greeting</span>
-            </div>
-            <div class="route">
-                <span class="method">GET</span>
-                <code>/api/health</code>
-                <span>Health check</span>
-            </div>
-        </div>
+        <h1>Slushieee</h1>
+        <p>I luv a cupcake n a slushieeee</p>
+        <a href="/login" class="open-btn">Open ✿</a>
     </div>
+
 </body>
+
 </html>
