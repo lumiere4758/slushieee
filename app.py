@@ -126,8 +126,8 @@ def player_action(action):
         traceback.print_exc()
         return jsonify({"error": str(e)}), 400
 
-@app.route("api/transfer/playback", methods=["POST"])
-def transfer_playbacl():
+@app.route("/api/transfer/playback", methods=["POST"])
+def transfer_playback():
     sp = get_spotify()
     if not sp:
         return jsonify({"error": "not authenticated"}), 401
