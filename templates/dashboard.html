@@ -34,19 +34,19 @@
             position: absolute;
             top: 3.5%;
             right: 3.5%;
-            width: 22%;
+            width: 26%;
             aspect-ratio: 1 / 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 12px;
+            gap: 12px;
+            padding: 16px;
         }
 
         .album-art {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
@@ -54,19 +54,19 @@
         }
 
         .album-art-placeholder {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             border-radius: 12px;
             background: linear-gradient(135deg, #f9b8c8, #f5d0d8);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 36px;
         }
 
         .song-title {
             font-family: 'Playfair Display', serif;
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             color: #8b3a52;
             text-align: center;
@@ -79,7 +79,7 @@
         }
 
         .song-artist {
-            font-size: 11px;
+            font-size: 13px;
             color: #b05070;
             text-align: center;
             opacity: 0.85;
@@ -87,7 +87,7 @@
 
         .idle-text {
             font-family: 'Playfair Display', serif;
-            font-size: 13px;
+            font-size: 16px;
             font-style: italic;
             color: #b05070;
             text-align: center;
@@ -107,7 +107,7 @@
 
         .controls-label {
             font-family: 'Playfair Display', serif;
-            font-size: 15px;
+            font-size: 18px;
             font-style: italic;
             color: #c25a7a;
             opacity: 0.7;
@@ -180,7 +180,7 @@
         .time-row {
             display: flex;
             justify-content: space-between;
-            font-size: 10px;
+            font-size: 12px;
             color: #b05070;
             opacity: 0.75;
         }
@@ -190,7 +190,7 @@
             position: absolute;
             bottom: 32%;
             left: 7%;
-            font-size: 10px;
+            font-size: 12px;
             color: #b05070;
             opacity: 0.6;
             font-style: italic;
@@ -201,7 +201,7 @@
             position: absolute;
             bottom: 29%;
             right: 4%;
-            font-size: 11px;
+            font-size: 13px;
             color: #b05070;
             opacity: 0.55;
             text-decoration: none;
@@ -220,7 +220,7 @@
             top: 27%;
             left: 7%;
             font-family: "Playfair Display", serif;
-            font-size: 18px;
+            font-size: 22px;
             color: #8b3a52;
             opacity: 0.65;
             font-style: italic;
@@ -290,6 +290,9 @@
 
         function togglePlayPause() {
             const action = isPlaying ? 'pause' : 'play';
+            // Optimistically update UI
+            isPlaying = !isPlaying;
+            document.getElementById('btn-play').textContent = isPlaying ? '⏸' : '▶';
             playerAction(action);
         }
 
