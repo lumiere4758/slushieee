@@ -122,8 +122,26 @@ def player_action(action):
             return jsonify({"error": "unknown action"}), 400
         return jsonify({"ok": True})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 400
 
+@app.route("api/transfer/playback", methods=["POST"])
+def transfer_playbacl():
+    sp = get_spotify()
+    if not sp:
+        return jsonify({"error": "not authenticated"}), 401
+    data = request.json
+    device_id = data.get("device_id")
+    if not device_id:
+        return jsonify({"error": "No device id provided"}), 400
+    try: 
+        sp.transfer_playback(device_id=device_id, force_play=False)
+        return jsonify({"ok":True})
+    except Exception as e:
+        print(f"Transfer playback failed: {e}")
+        return jsonify({"error": str(e)}), 400
+        
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -32,7 +32,7 @@
         /* ── Sticky-note song banner (top-right) ─────────────────────────── */
         .sticky-note {
             position: absolute;
-            top: 3.5%;
+            top: 1.5%;
             right: 3.5%;
             width: 26%;
             aspect-ratio: 1 / 1;
@@ -279,13 +279,38 @@
                 getOAuthToken: cb => cb(TOKEN),
                 volume: 0.6
             });
-            player.connect();
+
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+                fetch('/api/transfer-playback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ device_id: device_id })
+                }).catch(e => console.error("Transfer failed", e));
+            });
+
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.connect().then(success => {
+                if (success) {
+                    console.log('The Web Playback SDK successfully connected to Spotify!');
+                }
+            });
         };
 
-        // ── Player controls ───────────────────────────────────────────────
         function playerAction(action) {
             fetch(`/api/player/${action}`, { method: 'POST' })
-                .then(() => setTimeout(fetchNowPlaying, 400));
+                .then(r => r.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Player action error:', data.error);
+                        alert(`Action failed: ${data.error}\n(If you have a free Spotify account, playback control via API is restricted.)`);
+                    }
+                    setTimeout(fetchNowPlaying, 400);
+                })
+                .catch(err => console.error(err));
         }
 
         function togglePlayPause() {
